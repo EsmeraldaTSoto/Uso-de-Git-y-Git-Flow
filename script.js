@@ -108,12 +108,6 @@ function renderStats() {
   progressFill.style.width = `${percent}%`;
 }
 
-
-function formatDate(isoString) {
-  const date = new Date(isoString);
-  const today = new Date();
-  const isToday = date.toDateString() === today.toDateString();
-  
 function formatDate(isoString) {
   const date = new Date(isoString);
   const today = new Date();
@@ -124,7 +118,7 @@ function formatDate(isoString) {
     ? `Hoy, ${time}`
     : `${date.toLocaleDateString()}, ${time}`;
 }
-}
+
 
 function render() {
   const visible = getVisibleTasks();
