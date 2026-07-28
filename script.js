@@ -109,7 +109,11 @@ function renderStats() {
 
 
 function formatDate(isoString) {
-  return new Date(isoString).toLocaleString();
+  const date = new Date(isoString);
+  const today = new Date();
+  const isToday = date.toDateString() === today.toDateString();
+  const time = date.toLocaleTimeString();
+  return isToday ? `Hoy, ${time}` : date.toLocaleString();
 }
 
 function render() {
