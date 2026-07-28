@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gestor de tareas</title>
+<meta name="description" content="Bitácora: gestor de tareas simple con búsqueda, filtros y progreso." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -50,6 +51,7 @@
 
   <div class="toolbar">
     <input type="search" id="search" placeholder="Buscar en la bitácora…" autocomplete="off" />
+    <span id="results-count" class="results-count"></span>
     <div class="filters" role="tablist">
       <button type="button" class="filter-btn active" data-filter="all">Todas</button>
       <button type="button" class="filter-btn" data-filter="pending">Pendientes</button>

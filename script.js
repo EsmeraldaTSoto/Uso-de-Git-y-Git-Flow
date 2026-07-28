@@ -14,6 +14,7 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 const statsLabel = document.getElementById("stats-label");
 const statsPercent = document.getElementById("stats-percent");
 const progressFill = document.getElementById("progress-fill");
+const resultsCount = document.getElementById("results-count");
 
 let editingId = null;
 let currentFilter = "all";
@@ -112,16 +113,28 @@ function formatDate(isoString) {
   const date = new Date(isoString);
   const today = new Date();
   const isToday = date.toDateString() === today.toDateString();
+  
+function formatDate(isoString) {
+  const date = new Date(isoString);
+  const today = new Date();
+  const isToday = date.toDateString() === today.toDateString();
   const options = { hour: "2-digit", minute: "2-digit" };
   const time = date.toLocaleTimeString([], options);
   return isToday
     ? `Hoy, ${time}`
     : `${date.toLocaleDateString()}, ${time}`;
 }
+}
 
 function render() {
   const visible = getVisibleTasks();
   taskList.innerHTML = "";
+
+  if (currentSearch.trim() !== "") {
+    resultsCount.textContent = `${visible.length} resultado(s)`;
+  } else {
+    resultsCount.textContent = "";
+  }
 
   const allTasks = getTasks();
   if (allTasks.length === 0) {
@@ -163,6 +176,8 @@ function render() {
     li.querySelector(".edit-btn").addEventListener("click", () => startEdit(task));
 
     li.querySelector(".delete-btn").addEventListener("click", () => {
+      const confirmed = confirm(`¿Eliminar la tarea "${task.title}"?`);
+      if (!confirmed) return;
       deleteTask(task.id);
       render();
       renderStats();
