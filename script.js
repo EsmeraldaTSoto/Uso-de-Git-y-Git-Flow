@@ -14,6 +14,7 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 const statsLabel = document.getElementById("stats-label");
 const statsPercent = document.getElementById("stats-percent");
 const progressFill = document.getElementById("progress-fill");
+const resultsCount = document.getElementById("results-count");
 
 let editingId = null;
 let currentFilter = "all";
@@ -115,6 +116,12 @@ function formatDate(isoString) {
 function render() {
   const visible = getVisibleTasks();
   taskList.innerHTML = "";
+
+  if (currentSearch.trim() !== "") {
+    resultsCount.textContent = `${visible.length} resultado(s)`;
+  } else {
+    resultsCount.textContent = "";
+  }
 
   const allTasks = getTasks();
   if (allTasks.length === 0) {
