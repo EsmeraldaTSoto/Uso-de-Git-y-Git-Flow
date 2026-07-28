@@ -160,6 +160,8 @@ function render() {
     li.querySelector(".edit-btn").addEventListener("click", () => startEdit(task));
 
     li.querySelector(".delete-btn").addEventListener("click", () => {
+      const confirmed = confirm(`¿Eliminar la tarea "${task.title}"?`);
+      if (!confirmed) return;
       deleteTask(task.id);
       render();
       renderStats();
